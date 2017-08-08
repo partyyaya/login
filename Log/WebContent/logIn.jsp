@@ -7,10 +7,11 @@
 <title>帳戶登入</title>
 </head>
 <body>
-<form action="logMember" method='post'>
+<form action="loginMember" method='post'>
 	帳號:<input type='text' name='user' />
 	密碼:<input type='password' name='passwd'/>
 	<input type='submit' value='登入' />
 </form><br/>
+<a href=""></a>
 </body>
 </html>
