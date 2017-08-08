@@ -8,10 +8,11 @@
 </head>
 <body>
 <form action="loginMember" method='post'>
-	帳號:<input type='text' name='user' />
-	密碼:<input type='password' name='passwd'/>
-	<input type='submit' value='登入' />
-</form><br/>
-<a href=""></a>
+	帳號:<input type='text' name='user' /><br/>
+	密碼:<input type='password' name='passwd'/><br/>
+	<input type='submit' value='登入'/><br/>
+	<hr/>
+	
+</form>
 </body>
 </html>

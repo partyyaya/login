@@ -23,6 +23,11 @@ public class member extends HttpServlet {
 		String passwd = request.getParameter("passwd");
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
+		try {			
+			Class.forName("com.mysql.jdbc.Driver");		
+		} catch (Exception e) {
+			System.out.println(e);
+		}	
 		Properties prop = new Properties();
 		prop.setProperty("user", "root");
 		prop.setProperty("password", "root");

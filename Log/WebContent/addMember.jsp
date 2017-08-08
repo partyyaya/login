@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript">
+<script>
 function checkName(){
 	var inputNode = document.getElementById("user");
 	var spanNode = document.getElementById("userId");	
@@ -42,10 +42,10 @@ function checkPasswd(){
 }
 
 function checkTel(){
-	var email = document.getElementById("tel").value;
+	var tel = document.getElementById("tel").value;
 	var spanNode = document.getElementById("telId");
 	var reg = /^[0-9]{10}$/i; 
-	if(reg.test(email)){
+	if(reg.test(tel)){
 		//符合规则
 		spanNode.innerHTML = "ok".fontcolor("green");
 		return true;
@@ -79,15 +79,15 @@ function checkEmail(){
 <body>
 <form action="member" method='post'>
 	<h3>帳戶設定:</h3>
-	暱稱:<input type='text' name='sname' />
-	帳號:<input type='text' name='user' id="user" onblur="checkName()"/><span id="userId"></span>
-	密碼:<input type='password' name='passwd'id="passwd" onblur="checkPasswd()"/><span id="passwdId"></span>
-	密碼確認:<input type='password' name='checkpasswd'/>
+	暱稱:<input type='text' name='sname' /><br/>
+	帳號:<input type='text' name='user' id="user" onblur="checkName()"/><span id="userId"></span><br/>
+	密碼:<input type='password' name='passwd'id="passwd" onblur="checkPasswd()"/><span id="passwdId"></span><br/>
+	密碼確認:<input type='password' name='checkpasswd'/><br/>
 	<hr/>
 	<h3>個資設定:</h3>	
-	手機:<input type='text' name='tel' id="tel" onblur="checkTel()"/><span id="telId"></span>
-	信箱:<input type='text' name='email' id="email" onblur="checkEmail()"/><span id="emailId"></span>
-	<input type='submit' value='建立' onClick="confirm('確定建立?')"/>
+	手機:<input type='text' name='tel' id="tel" onblur="checkTel()"/><span id="telId"></span><br/>
+	信箱:<input type='text' name='email' id="email" onblur="checkEmail()"/><span id="emailId"></span><br/>
+	<input type='submit' value='建立' onClick="confirm('確定建立?')"/><br/>
 </form>
 </body>
 </html>

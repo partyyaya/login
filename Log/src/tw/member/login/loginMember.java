@@ -24,6 +24,11 @@ public class loginMember extends HttpServlet {
 		prop.setProperty("user", "root");
 		prop.setProperty("password", "root");
 		String sql = "SELECT * FROM member where user=? and passwd=?";
+		try {			
+			Class.forName("com.mysql.jdbc.Driver");		
+		} catch (Exception e) {
+			System.out.println(e);
+		}		
 		try (
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/ming"
 				                       ,prop);
