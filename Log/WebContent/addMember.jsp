@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>建立帳戶</title>
 <script type="text/javascript">
 function checkName(){
 	var inputNode = document.getElementById("user");
@@ -18,18 +18,17 @@ function checkName(){
 		return true;
 	}else{
 		//不符合规则
-		spanNode.innerHTML = "請輸入英文或數字".fontcolor("red");
-		
+		spanNode.innerHTML = "請輸入英文或數字".fontcolor("red");		
 		return false;
 	}	
 }
 
 
-function checkPasswd(){
+function checkPass(){
 	var inputNode = document.getElementById("passwd");
 	var spanNode = document.getElementById("passwdId");	
 	var content  = inputNode.value;
-	var reg = /^[a-z0-9]{20}$/i;	
+	var reg =/^[a-z0-9]{20}$/i;	
 	if(reg.test(content)){
 		//符合规则
 		spanNode.innerHTML = "ok".fontcolor("green");
@@ -37,8 +36,7 @@ function checkPasswd(){
 		return true;
 	}else{
 		//不符合规则
-		spanNode.innerHTML = "請輸入英文或數字".fontcolor("red");
-		
+		spanNode.innerHTML = "請輸入英文或數字".fontcolor("red");		
 		return false;
 	}	
 }
@@ -53,9 +51,9 @@ function checkTel(){
 		return true;
 	}else{
 		//不符合规则
-		spanNode.innerHTML = "請輸入書字".fontcolor("red");
-		
+		spanNode.innerHTML = "請輸入數字".fontcolor("red");		
 		return false;
+	}
 }	
 	
 function checkEmail(){
@@ -92,7 +90,7 @@ function checkAll(){
 	<h3>帳戶設定:</h3>
 	暱稱:<input type='text' name='sname' /><br/>
 	帳號:<input type='text' name='user' id="user" onblur="checkName()"/><span id="userId"></span><br/>
-	密碼:<input type='password' name='passwd'id="passwd" onblur="checkPasswd()"/><span id="passwdId"></span><br/>
+	密碼:<input type="password"  name="passwd" id="passwd" onblur="checkPass()"/><span id="passwdId"></span><br/>
 	密碼確認:<input type='password' name='checkpasswd'/><br/>
 	<hr/>
 	<h3>個資設定:</h3>	
