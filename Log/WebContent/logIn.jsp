@@ -11,8 +11,7 @@
 	帳號:<input type='text' name='user' /><br/>
 	密碼:<input type='password' name='passwd'/><br/>
 	<input type='submit' value='登入'/><br/>
-	<hr/>
-	
+	<hr/>	
 </form>
 </body>
 </html>

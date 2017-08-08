@@ -3,7 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
 function checkName(){
 	var inputNode = document.getElementById("user");
 	var spanNode = document.getElementById("userId");	
@@ -71,13 +73,22 @@ function checkEmail(){
 	}	
 	
 }
+function checkAll(){
+	var user = checkName();	
+	var email = checkEmail();
+	var tel = checkTel();	
+	var passwd = checkPasswd();
+	if(user && email && tel && passwd){
+		return true;
+	}else{	
+		return false;
+	}
+}
 
 </script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
-<form action="member" method='post'>
+<form action="member" method='post' onsubmit="return checkAll()" >
 	<h3>帳戶設定:</h3>
 	暱稱:<input type='text' name='sname' /><br/>
 	帳號:<input type='text' name='user' id="user" onblur="checkName()"/><span id="userId"></span><br/>
