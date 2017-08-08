@@ -10,7 +10,7 @@ function checkName(){
 	var inputNode = document.getElementById("user");
 	var spanNode = document.getElementById("userId");	
 	var content  = inputNode.value;
-	var reg = /^[a-z0-9]{10}$/i;	
+	var reg = /^[a-z0-9]{1,10}$/i;	
 	if(reg.test(content)){
 		//符合规则
 		spanNode.innerHTML = "ok".fontcolor("green");
@@ -28,7 +28,7 @@ function checkPass(){
 	var inputNode = document.getElementById("passwd");
 	var spanNode = document.getElementById("passwdId");	
 	var content  = inputNode.value;
-	var reg =/^[a-z0-9]{20}$/i;	
+	var reg =/^[a-z0-9]{1,20}$/i;	
 	if(reg.test(content)){
 		//符合规则
 		spanNode.innerHTML = "ok".fontcolor("green");
@@ -41,6 +41,21 @@ function checkPass(){
 	}	
 }
 
+function doubleCheck(){
+	var passwd = document.getElementById("passwd").value;
+	var ckpasswd = document.getElementById("ckpasswd").value;
+	var spanNode = document.getElementById("ckId");
+	if(passwd == ckpasswd){
+		//符合规则
+		spanNode.innerHTML = "ok".fontcolor("green");
+		return true;
+	}else{
+		//不符合规则
+		spanNode.innerHTML = "請重新確認密碼".fontcolor("red");		
+		return false;
+	}
+}
+
 function checkTel(){
 	var tel = document.getElementById("tel").value;
 	var spanNode = document.getElementById("telId");
@@ -51,7 +66,7 @@ function checkTel(){
 		return true;
 	}else{
 		//不符合规则
-		spanNode.innerHTML = "請輸入數字".fontcolor("red");		
+		spanNode.innerHTML = "手機格式錯誤,請重新輸入".fontcolor("red");		
 		return false;
 	}
 }	
@@ -68,15 +83,16 @@ function checkEmail(){
 		//不符合规则
 		spanNode.innerHTML = "信箱格式錯誤,請重新輸入".fontcolor("red");		
 		return false;
-	}	
-	
+	}		
 }
+
 function checkAll(){
 	var user = checkName();	
 	var email = checkEmail();
 	var tel = checkTel();	
 	var passwd = checkPasswd();
-	if(user && email && tel && passwd){
+	var ck = doubleCheck();
+	if(user && email && tel && passwd && ck){
 		return true;
 	}else{	
 		return false;
@@ -91,7 +107,7 @@ function checkAll(){
 	暱稱:<input type='text' name='sname' /><br/>
 	帳號:<input type='text' name='user' id="user" onblur="checkName()"/><span id="userId"></span><br/>
 	密碼:<input type="password"  name="passwd" id="passwd" onblur="checkPass()"/><span id="passwdId"></span><br/>
-	密碼確認:<input type='password' name='checkpasswd'/><br/>
+	密碼確認:<input type='password' id='ckpasswd' onblur="doubleCheck()"/><span id="ckId"></span><br/>
 	<hr/>
 	<h3>個資設定:</h3>	
 	手機:<input type='text' name='tel' id="tel" onblur="checkTel()"/><span id="telId"></span><br/>
