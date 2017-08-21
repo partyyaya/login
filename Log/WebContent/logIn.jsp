@@ -205,7 +205,7 @@
             </div>
             <hr />
             <h4>忘記您的密碼了?</h4>
-            <p>不用擔心 <a class="color-green" onclick="myFc()">點擊</a> 立刻重置您的密碼</p>
+            <p>不用擔心 <a class="color-green" href="forgetPasswd.jsp">點擊</a> 立刻重置您的密碼</p>
         </form>
     </div><!--/row-fluid-->
 </div><!--/container-->		
@@ -224,12 +224,7 @@
 <script type="text/javascript" src="assets/js/app.js"></script>
 <script src="assets/js/alertify.min.js"></script>
 
-<script>
 
-   function myFc() {			
-			alert("訊息已傳送");			
-		}
-</script>
 
 <!--[if lt IE 9]>
     <script src="assets/js/respond.js"></script>

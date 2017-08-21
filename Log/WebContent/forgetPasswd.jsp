@@ -189,7 +189,7 @@
 	<div class="container">		
 		<div class="row-fluid margin-bottom-10">
         	<form class="reg-page" action="emailGetPasswd" method="post">
-            	<h3>修改密碼</h3>
+            	<h3>忘記密碼</h3>
                 <div class="controls">            
                     <label>請輸入帳號</label>
                     <input type="text" class="span12" name="user"/>
@@ -198,7 +198,7 @@
                 </div>
                 <div class="controls form-inline">
                     
-                    <button class="btn-u pull-right" type="submit">送出申請</button>
+                    <button class="btn-u pull-right" type="submit">重置密碼</button>
                 </div>
               
 			

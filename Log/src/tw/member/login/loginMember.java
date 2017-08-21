@@ -1,6 +1,7 @@
 package tw.member.login;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,6 +21,11 @@ public class loginMember extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String user = request.getParameter("user");
 		String passwd = request.getParameter("passwd");
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("UTF-8");
+		
 		Properties prop = new Properties();
 		prop.setProperty("user", "root");
 		prop.setProperty("password", "root");
@@ -42,6 +48,11 @@ public class loginMember extends HttpServlet {
 					//將名稱傳回主頁
 					request.setAttribute("user", user);
 					request.getRequestDispatcher("changePassword.jsp").forward(request, response);
+				}else {
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('帳號或密碼輸入錯誤,請重新輸入');");
+					out.println("location='logIn.jsp';");
+					out.println("</script>");
 				}
 			}
 			catch (Exception e){
