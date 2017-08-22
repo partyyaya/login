@@ -148,7 +148,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                     <li><a href="page_login.html">會員登入</a></li>
-                                <li><a href="page_registration.html">成為會員</a></li>
+                                <li><a href="addMember.jsp">成為會員</a></li>
                                 <li><a href="page_contact1.html">公司地址</a></li>
                                  <li><a href="page_about.html">關於我們</a></li>
                                

@@ -13,15 +13,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/chPasswd")
 public class chPasswd extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user = (String)request.getAttribute("user");
+		//若沒有已存在session,就會自動新創立一個
+		HttpSession session = request.getSession();
+		String user = (String)session.getAttribute("user");
 		String oldPasswd = request.getParameter("oldPasswd");
 		String newPasswd = request.getParameter("newPasswd");
+		System.out.println(user);
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -30,15 +34,15 @@ public class chPasswd extends HttpServlet {
 		Properties prop = new Properties();
 		prop.setProperty("user", "root");
 		prop.setProperty("password", "root");
-		String sql = "SELECT * FROM member where user=? and passwd=?";
-		String upsql = "UPDATE member SET  passwd=? WHERE user=?";
+		String sql = "SELECT * FROM member3 where user=? and passwd=?";
+		String upsql = "UPDATE member3 SET  passwd=? WHERE user=?";
 		try {			
 			Class.forName("com.mysql.jdbc.Driver");		
 		} catch (Exception e) {
 			System.out.println(e);
 		}		
 		try (
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/ming",prop);
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ming",prop);
 				PreparedStatement pstmt=conn.prepareStatement(sql);
 				PreparedStatement pstmt2=conn.prepareStatement(upsql);	
 				)
@@ -49,7 +53,7 @@ public class chPasswd extends HttpServlet {
 				if(rs.next()) {
 					pstmt2.setString(1, newPasswd);	
 					pstmt2.setString(2, user);	
-					pstmt.execute();
+					pstmt2.executeUpdate();
 				}else {
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('舊密碼輸入錯誤,請重新輸入');");

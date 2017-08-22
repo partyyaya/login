@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/loginMember")
@@ -22,6 +23,9 @@ public class loginMember extends HttpServlet {
 		String user = request.getParameter("user");
 		String passwd = request.getParameter("passwd");
 		
+		//若沒有已存在session,就會自動新創立一個
+		HttpSession session = request.getSession();
+		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
@@ -29,14 +33,14 @@ public class loginMember extends HttpServlet {
 		Properties prop = new Properties();
 		prop.setProperty("user", "root");
 		prop.setProperty("password", "root");
-		String sql = "SELECT * FROM member where user=? and passwd=?";
+		String sql = "SELECT * FROM member3 where user=? and passwd=?";
 		try {			
 			Class.forName("com.mysql.jdbc.Driver");		
 		} catch (Exception e) {
 			System.out.println(e);
 		}		
 		try (
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/ming"
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ming"
 				                       ,prop);
 				PreparedStatement pstmt=conn.prepareStatement(sql);			
 				)
@@ -46,7 +50,7 @@ public class loginMember extends HttpServlet {
 				ResultSet rs = pstmt.executeQuery();
 				if(rs.next()) {
 					//將名稱傳回主頁
-					request.setAttribute("user", user);
+					session.setAttribute("user", user);
 					request.getRequestDispatcher("changePassword.jsp").forward(request, response);
 				}else {
 					out.println("<script type=\"text/javascript\">");

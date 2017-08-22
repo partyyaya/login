@@ -18,12 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/emailGetPasswd")
 public class emailGetPasswd extends HttpServlet {
 	
-	private email smtp; 
+	private email smtp = new email(); 
 	private String number;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String user = request.getParameter("user");
 		String email = request.getParameter("email");
-		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
@@ -31,8 +30,8 @@ public class emailGetPasswd extends HttpServlet {
 		Properties prop = new Properties();
 		prop.setProperty("user", "root");
 		prop.setProperty("password", "root");
-		String sql = "SELECT * FROM member where user=? and email=?";
-		String upsql = "UPDATE member SET  passwd=? WHERE email=?";
+		String sql = "SELECT * FROM member3 where user=? and email=?";
+		String upsql = "UPDATE member3 SET  passwd=? WHERE email=?";
 
 		try {			
 			Class.forName("com.mysql.jdbc.Driver");		
@@ -40,27 +39,30 @@ public class emailGetPasswd extends HttpServlet {
 			System.out.println(e);
 		}		
 		try (
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/ming",prop);
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ming",prop);
 				PreparedStatement pstmt=conn.prepareStatement(sql);				
 				PreparedStatement pstmt2=conn.prepareStatement(upsql);	
-
 				)
 			{					
 				pstmt.setString(1, user);
 				pstmt.setString(2, email);
 				ResultSet rs = pstmt.executeQuery();
+				
 				if(rs.next()) {
-					rs.getString("email");
-					number = smtp.smtp(email, "寄信人");
+					System.out.println(email);
+					number = smtp.smtp(email);
 					pstmt2.setString(1,number);	
-					pstmt2.setString(2, email);	
-					pstmt.execute();
+					pstmt2.setString(2,email);
+					pstmt2.executeUpdate();
+					//System.out.println("111");
+					
 				}else {
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('帳號或信箱錯誤,請重新輸入');");
 					out.println("location='forgetPasswd.jsp';");
 					out.println("</script>");
 				}
+				//System.out.println("222");
 			}
 			catch (Exception e){
 				System.out.println(e);

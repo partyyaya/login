@@ -31,9 +31,9 @@ public class member extends HttpServlet {
 		Properties prop = new Properties();
 		prop.setProperty("user", "root");
 		prop.setProperty("password", "root");
-		String sql = "INSERT INTO member(sname,user,passwd,tel,email) values(?,?,?,?,?)";
+		String sql = "INSERT INTO member3(sname,user,passwd,tel,email) values(?,?,?,?,?)";
 		try (
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/ming"				                       ,prop);
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ming"				                       ,prop);
 				PreparedStatement pstmt=conn.prepareStatement(sql);			
 				)
 			{					
