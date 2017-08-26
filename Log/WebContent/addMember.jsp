@@ -232,7 +232,7 @@ input[type=submit] {
 	<div class="form-group">
 	<label for="userName" class="col-sm-3 control-label" style="margin-top:2px;color:green;">姓名</label>
     	<div class="col-sm-6">
-      		<input type="text" name="user" class="form-control" id="userName" placeholder="請填寫真實姓名">
+      		<input type="text" name="sname" class="form-control" id="sname" placeholder="請填寫真實姓名">
     	</div>    
 	</div>
 	<div class="form-group" style="margin-top:2px">

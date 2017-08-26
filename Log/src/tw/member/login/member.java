@@ -1,6 +1,7 @@
 package tw.member.login;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,18 +32,35 @@ public class member extends HttpServlet {
 		Properties prop = new Properties();
 		prop.setProperty("user", "root");
 		prop.setProperty("password", "root");
-		String sql = "INSERT INTO member3(sname,user,passwd,tel,email) values(?,?,?,?,?)";
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("UTF-8");
+		
+		String insql = "INSERT INTO member3(sname,user,passwd,tel,email) values(?,?,?,?,?)";
+		String sql = "SELECT * FROM member3 where user=? ";
 		try (
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ming"				                       ,prop);
-				PreparedStatement pstmt=conn.prepareStatement(sql);			
+				PreparedStatement pstmt=conn.prepareStatement(insql);
+				PreparedStatement pstmt2=conn.prepareStatement(sql);
 				)
-			{					
-				pstmt.setString(1, sname);
-				pstmt.setString(2, user);
-				pstmt.setString(3, passwd);
-				pstmt.setString(4, tel);
-				pstmt.setString(5, email);
-				pstmt.execute();
+			{	
+			pstmt2.setString(1, user);
+			ResultSet rs = pstmt2.executeQuery();
+				if(rs.next()) {
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('帳號已有人使用!');");
+					out.println("location='addMember.jsp';");
+					out.println("</script>");
+				}
+				else {
+					pstmt.setString(1, sname);
+					pstmt.setString(2, user);
+					pstmt.setString(3, passwd);
+					pstmt.setString(4, tel);
+					pstmt.setString(5, email);
+					pstmt.execute();
+				}
 			}
 			catch (Exception e){
 				System.out.println(e);
