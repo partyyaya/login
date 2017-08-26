@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta http-equiv="expires" content="-1"><!--(代表網頁隨時都過期)防ie瀏覽器快取 -->
     
     <link rel=stylesheet type="text/css" href="css/div.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -148,6 +149,7 @@ input[type=submit] {
     border-radius: 5px; 
 }
 
+
 .color-red{
 	color:red;
 }
@@ -280,13 +282,17 @@ input[type=submit] {
 <script type="text/javascript">
 function checkName(){
 	var inputNode = document.getElementById("user");
-	var spanNode = document.getElementById("userId");	
+	var spanNode = document.getElementById("userId");
+	var user = document.getElementById('user').value;
 	var content  = inputNode.value;
-	var reg = /^[a-z0-9]{1,10}$/i;	
+	var reg = /^[a-z0-9]{1,10}$/i;
+	$.get("checkSame?user="+user,function(data,status){
+		alert("数据: " + data + "\n状态: " + status);
+	});
 	if(reg.test(content)){
 		//符合规则
 		spanNode.innerHTML ="✔ ok".fontcolor("green");
-		
+		 
 		return true;
 	}else{
 		//不符合规则
