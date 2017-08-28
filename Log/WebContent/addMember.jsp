@@ -225,10 +225,10 @@ input[type=submit] {
 	<hr class="style-one" />
 	<!--=== 橫幅結束 ===-->
 	
-	<div class="col-sm-4"></div>
-<form class="col-sm-4 form-horizontal" action="member" method='post' onsubmit="return checkAll();" role="form" style="margin-top:3%;border-radius: 4px;border: 2px solid green;background-color: rgba(87,168,29,0.3);">
+	<div class="col-sm-3"></div>
+<form class="col-sm-6 form-horizontal" action="member" method='post' onsubmit="return checkAll();" role="form" style="margin-top:3%;border-radius: 4px;border: 2px solid green;background-color: rgba(87,168,29,0.3);">
 	<div class="form-group">
-	<label for="userName" class="col-sm-4 control-label" style="margin-top:2px;font-size:22px;color:green;">會員註冊</label>
+	<label for="userName" class="col-sm-3 control-label" style="margin-top:2px;font-size:22px;color:green;">會員註冊</label>
     	  
 	</div>
 	<div class="form-group">
@@ -280,19 +280,34 @@ input[type=submit] {
 </form>	
 </body>
 <script type="text/javascript">
+function same(result){	
+	$.ajaxSetup({
+		async: false
+		});
+	var user = document.getElementById('user').value;
+	var result;
+	$.get("checkSame?user="+user,function(data,status){			
+		if(data == 0){			
+			result=false;
+		}else if(data == 1){
+			result =true;
+		}
+	});
+	return result;
+}
 function checkName(){
 	var inputNode = document.getElementById("user");
 	var spanNode = document.getElementById("userId");
-	var user = document.getElementById('user').value;
 	var content  = inputNode.value;
 	var reg = /^[a-z0-9]{1,10}$/i;
-	$.get("checkSame?user="+user,function(data,status){
-		alert("数据: " + data + "\n状态: " + status);
-	});
+	var isSame=same();
 	if(reg.test(content)){
 		//符合规则
+		if(isSame){			
 		spanNode.innerHTML ="✔ ok".fontcolor("green");
-		 
+		}else{		
+			spanNode.innerHTML = "名稱已被使用".fontcolor("red");	
+		}
 		return true;
 	}else{
 		//不符合规则

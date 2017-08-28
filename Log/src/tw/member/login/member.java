@@ -37,10 +37,10 @@ public class member extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		
-		String insql = "INSERT INTO member3(sname,user,passwd,tel,email) values(?,?,?,?,?)";
-		String sql = "SELECT * FROM member3 where user=? ";
+		String insql = "INSERT INTO member(sname,user,passwd,tel,email) values(?,?,?,?,?)";
+		String sql = "SELECT * FROM member where user=? ";
 		try (
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ming"				                       ,prop);
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/ming"				                       ,prop);
 				PreparedStatement pstmt=conn.prepareStatement(insql);
 				PreparedStatement pstmt2=conn.prepareStatement(sql);
 				)

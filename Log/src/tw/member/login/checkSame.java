@@ -35,9 +35,9 @@ public class checkSame extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		
-		String sql = "SELECT * FROM member3 where user=? ";
+		String sql = "SELECT * FROM member where user=? ";
 		try (
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ming",prop);
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/ming",prop);
 				PreparedStatement pstmt2=conn.prepareStatement(sql);
 				)
 			{	
@@ -45,10 +45,12 @@ public class checkSame extends HttpServlet {
 			System.out.println(user);
 			ResultSet rs = pstmt2.executeQuery();
 				if(rs.next()) {
-					out.println("'已有人使用'.fontcolor('red')");		
+					out.println("0");
+					System.out.println("no");
 				}
 				else {					
-					out.println("'✔ ok'.fontcolor('green')");
+					out.println("1");
+					System.out.println("yes");
 				}
 			}
 			catch (Exception e){
