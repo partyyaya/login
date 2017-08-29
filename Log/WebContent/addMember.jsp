@@ -305,10 +305,11 @@ function checkName(){
 		//符合规则
 		if(isSame){			
 		spanNode.innerHTML ="✔ ok".fontcolor("green");
+			return true;
 		}else{		
-			spanNode.innerHTML = "名稱已被使用".fontcolor("red");	
+			spanNode.innerHTML = "名稱已被使用".fontcolor("red");
+			return false;
 		}
-		return true;
 	}else{
 		//不符合规则
 		spanNode.innerHTML = "請重新輸入".fontcolor("red");		
