@@ -237,7 +237,7 @@ input[type=submit] {
 	<div class="form-group" style="margin-top:2px">
 	<label for="passwd" class="col-sm-3 control-label" style="color:green;">密碼</label>
     	<div class="col-sm-6">
-      		<input type="text" name="passwd"  class="form-control" placeholder="請輸入密碼" >
+      		<input type="password" name="passwd"  class="form-control" placeholder="請輸入密碼" >
     	</div>
     	<span id="passwdId" class="col-sm-3" style="padding-top:7px;"></span>
     </div>
