@@ -23,6 +23,7 @@ public class changeData extends HttpServlet {
 		if(user==null){
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
+		
 		String passwd = request.getParameter("passwd");
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
