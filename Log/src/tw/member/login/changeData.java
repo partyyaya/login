@@ -54,6 +54,7 @@ public class changeData extends HttpServlet {
 			}catch (Exception e){
 				System.out.println(e);
 			}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
