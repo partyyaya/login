@@ -30,6 +30,7 @@ public class changeData extends HttpServlet {
 		String sname = request.getParameter("sname");
 		String address = request.getParameter("address");
 		
+		
 		try {			
 			Class.forName("com.mysql.jdbc.Driver");		
 		} catch (Exception e) {
