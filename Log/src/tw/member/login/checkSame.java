@@ -35,9 +35,9 @@ public class checkSame extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		
-		String sql = "SELECT * FROM member where user=? ";
+		String sql = "SELECT * FROM member3 where user=? ";
 		try (
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/ming",prop);
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ming",prop);
 				PreparedStatement pstmt2=conn.prepareStatement(sql);
 				)
 			{	

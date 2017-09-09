@@ -33,9 +33,6 @@
     #toparea{
         
          background-color: 	#FFFFFF;
-         
-      
-
     }
     
     #change{
@@ -152,7 +149,12 @@ input[type=submit] {
 	color:red;
 }
 </style>        
-        
+<%
+String have = (String)session.getAttribute("user");
+if(have !=null) {
+	request.getRequestDispatcher("forgetPasswd.jsp").forward(request, response);
+}
+%>        
 <body><!--=== 橫幅開始 ===-->
           <div class="container">         
         <ul class="loginbar pull-right">

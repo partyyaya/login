@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/member")
 public class member extends HttpServlet {
 	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sname = request.getParameter("sname");
 		String user = request.getParameter("user");
@@ -37,19 +38,21 @@ public class member extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		
-		String insql = "INSERT INTO member(sname,user,passwd,tel,email) values(?,?,?,?,?)";
-		String sql = "SELECT * FROM member where user=? ";
+		String insql = "INSERT INTO member3(sname,user,passwd,tel,email) values(?,?,?,?,?)";
+		String sql = "SELECT * FROM member3 where user=? ";
+		synchronized(request) {
 		try (
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/ming"				                       ,prop);
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ming"				                       ,prop);
 				PreparedStatement pstmt=conn.prepareStatement(insql);
 				PreparedStatement pstmt2=conn.prepareStatement(sql);
 				)
 			{	
 			pstmt2.setString(1, user);
+			
 			ResultSet rs = pstmt2.executeQuery();
 				if(rs.next()) {
 					out.println("<script type=\"text/javascript\">");
-					out.println("alert('帳號已有人使用!');");
+					out.println("alert('此帳號名稱已有人使用!');");
 					out.println("location='addMember.jsp';");
 					out.println("</script>");
 				}
@@ -64,7 +67,8 @@ public class member extends HttpServlet {
 			}
 			catch (Exception e){
 				System.out.println(e);
-			}		
+			}
+		}	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

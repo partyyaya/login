@@ -280,7 +280,7 @@ input[type=submit] {
 </form>	
 </body>
 <script type="text/javascript">
-function same(result){	
+function same(){	
 	$.ajaxSetup({
 		async: false
 		});
